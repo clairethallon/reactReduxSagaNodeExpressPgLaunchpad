@@ -10,7 +10,6 @@ import { put, takeEvery } from 'redux-saga/effects';
 import axios from 'axios';
 import logger from 'redux-logger';
 
-// reducers 
 const reducerName = ( state =[], action ) =>{
   console.log( 'inventory reducer:', action );
   if( action.type === 'SET_THINGS' ){
@@ -30,7 +29,7 @@ function *getSaga( action ){
     // yield to avoid 
     const response = yield axios.get( '/test' );
     console.log( 'back from get:', response.data );
-    // use a "put" to dispatch for reducer
+    // use a "put" to dispatch for sagas
     yield put( { type: 'SET_THINGS', payload: response.data } );
   } catch( err ){
     alert( 'no' );
@@ -48,7 +47,6 @@ const store = createStore(
 )
 
 ReactDOM.render(
-  // privide store to app
   <Provider store={ store }>
     <App />
   </Provider>,
